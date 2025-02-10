@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "Bob's Burgers 2";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../public/fonts/Bob's Burgers 2.woff");
+}
+
+@font-face {
+  font-family: 'Bobs Burgers';
+  font-style: normal;
+  font-weight: normal;
+  src: url("../public/fonts/Bob's Burgers.woff") 
+}
+
+.title{
+  font-family: "Bob's Burgers 2", sans-serif;
+}
+
+.title2{
+  font-family: 'Bobs Burgers', sans-serif;
+}
+
+.option-card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.char-img{
+  width: 150px;
+  height: 200px;
+  object-fit: cover;
+  object-position: top;
+  
+}
+
+.char-name{
+  font-family: 'Bobs Burgers', sans-serif;
+}
