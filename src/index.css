@@ -2,28 +2,66 @@
   font-family: "Bob's Burgers 2";
   font-style: normal;
   font-weight: normal;
-  src: url("../public/fonts/Bob's Burgers 2.woff");
+  src: url("../fonts/Bob's Burgers 2.woff");
 }
 
 @font-face {
   font-family: 'Bobs Burgers';
   font-style: normal;
   font-weight: normal;
-  src: url("../public/fonts/Bob's Burgers.woff") 
+  src: url("../fonts/Bob's Burgers.woff") 
 }
 
-.title{
+/* FONTS */
+.bobs-font{
   font-family: "Bob's Burgers 2", sans-serif;
 }
 
-.title2{
+.bobs-font2{
   font-family: 'Bobs Burgers', sans-serif;
 }
 
-.option-card{
+.just-another-hand-regular {
+  font-family: "Just Another Hand", serif;
+}
+
+
+/* INTRO */
+.intro-container{
+  margin: 1rem;
+  justify-content: center;
+  display: flex;
+}
+
+
+.bob-sign-style{
+  border: .5rem solid #FD0D2A;
+  background-color: #FFE001;
+  color:black;
+  font-size: 2.5rem;
+  text-align: center;
+  padding: .5rem;
+  width: fit-content;
+  
+}
+
+.bob-sign-style::before{
+  background: none;
+  border-radius: 1px solid black;
+  display: block;
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  right: 2px;
+}
+
+
+.question-container, .intro-container{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .char-img{
@@ -34,6 +72,15 @@
   
 }
 
-.char-name{
-  font-family: 'Bobs Burgers', sans-serif;
+.options-container{
+  gap: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin: 1rem;
+}
+
+.active{
+  border: 1.5px solid rgb(206, 85, 95);
 }
