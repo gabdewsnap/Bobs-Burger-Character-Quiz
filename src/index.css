@@ -6,7 +6,7 @@
 }
 
 @font-face {
-  font-family: 'Bobs Burgers';
+  font-family: "Bob's Burgers";
   font-style: normal;
   font-weight: normal;
   src: url("../fonts/Bob's Burgers.woff") 
@@ -16,60 +16,79 @@
 .bobs-font{
   font-family: "Bob's Burgers 2", sans-serif;
 }
-
 .bobs-font2{
-  font-family: 'Bobs Burgers', sans-serif;
+  font-family: "Bob's Burgers", sans-serif;
 }
-
 .just-another-hand-regular {
   font-family: "Just Another Hand", serif;
 }
 
+/* BACKGROUND */
+html body{
+  background-image:url("./assets/bobs-burgers-background.jpg") ;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
 /* INTRO */
 .intro-container{
-  margin: 1rem;
-  justify-content: center;
-  display: flex;
+  padding: 2rem;
+  background-color: aliceblue;
+  border-radius: 15px;
+  box-shadow: 0px 2px 10px black;
 }
 
-
 .bob-sign-style{
-  border: .5rem solid #FD0D2A;
+  border: .25rem solid #FD0D2A;
   background-color: #FFE001;
   color:black;
   font-size: 2.5rem;
   text-align: center;
   padding: .5rem;
   width: fit-content;
-  
+  box-shadow: -2px 2px 2px black;
+  border-radius: 8px;
 }
 
-.bob-sign-style::before{
-  background: none;
-  border-radius: 1px solid black;
-  display: block;
-  position: absolute;
-  top: 2px;
-  bottom: 2px;
-  left: 2px;
-  right: 2px;
-}
-
-
-.question-container, .intro-container{
+.intro-container{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: #EDE9E6;
 }
 
+.intro-btn{
+  font-family: "Bob's Burgers", serif;
+  letter-spacing: .1rem;
+  font-weight: 500;
+  font-size: 1.25rem;
+  padding: .25rem 2rem;
+  background-color:hsla(60, 26%, 75%, 0.562);
+  border: 2px solid black;
+  border-radius: 8px;
+  color: black;
+  /* box-shadow: 0px 0px 2px black; */
+}
+
+.intro-btn:hover{
+  background-color: hsla(60, 26%, 75%, 0.336);
+}
+
+
+
+/* OPTIONS */
 .char-img{
   width: 150px;
   height: 200px;
   object-fit: cover;
   object-position: top;
-  
+  padding: 1rem 0;
 }
 
 .options-container{
@@ -81,6 +100,32 @@
   margin: 1rem;
 }
 
+.option-card{
+  font-size: 1rem;
+  border-radius: 5px;
+  font-family: "Just Another Hand", serif;
+}
+/* 
+.submit-btn{
+  font-family: "Bob's Burgers", sans-serif;
+  box-shadow: -2px 2px 2px black;
+  border-radius: 8px;
+  border: .25rem solid #FD0D2A;
+  background-color: #FFE001;
+  color:black;
+} */
+
 .active{
-  border: 1.5px solid rgb(206, 85, 95);
+  border: 2px solid #FD0D2A;
+  background: #FFE001;
+}
+
+@media only screen and (max-width: 768px) {
+  .bob-sign-style{
+    font-size: 1.5rem;
+  }
+
+  .option-card{
+    font-size: .75rem;
+  }
 }

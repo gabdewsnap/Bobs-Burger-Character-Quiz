@@ -24,7 +24,7 @@ function Option(props) {
       {selections}
     </div>
     
-    {activeButton ? <button>SUBMIT</button> : null}
+    {activeButton ? <button className='intro-btn'>SUBMIT</button> : null}
     
    
   </>
