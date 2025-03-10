@@ -1,22 +1,27 @@
 import {useState, useEffect} from 'react'
 import * as ReactDom from 'react-dom';
+import Answer from './Answer';
 
 function Option(props) {
   
-  const [activeButton, setActiveButton] = useState(0);
+  const [activeSelection, setActiveSelection] = useState(0);
+  const [showAnswer, setShowAnswer] = useState(false);
 
   const selections = props.options.map(char => 
     <button
       key={char.id}
       name={char.name}
-      onClick={() => setActiveButton(char.id)}
-      className={char.id === activeButton ? "option-card col-sm-5 col char-name bobs-font2 active" : "option-card col-sm-5 col-12 char-name bobs-font2 "}
+      onClick={() => setActiveSelection(char.id)}
+      className={char.id === activeSelection ? "option-card col-sm-5 col active" : "option-card col-sm-5 col-12"}
     >
       {char.name}
     </button>
   )
 
-
+  function toggleShowAnswer(){
+    setShowAnswer(showAnswer => !showAnswer)
+    console.log("test")
+  }
 
   return (
     <>
@@ -24,8 +29,9 @@ function Option(props) {
       {selections}
     </div>
     
-    {activeButton ? <button className='intro-btn'>SUBMIT</button> : null}
-    
+    {activeSelection ? <button className='intro-btn' onClick={toggleShowAnswer}>SUBMIT</button> : null}
+
+    {showAnswer ? <Answer selection={activeSelection} toggleShowAnswer={toggleShowAnswer}/> : null}
    
   </>
   )
