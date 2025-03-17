@@ -1,12 +1,17 @@
 import { useState, useEffect } from 'react'
 import './index.css'
 import Question from './components/Question'
+import Result from './components/Result'
 
 
 
-function Quiz(){
+function Quiz(props){
   const URL = "https://bobsburgers-api.herokuapp.com/characters/";
   const [questions, setQuestions] = useState([]);
+  const [questionsNum, setQuestionsNum] = useState(0);
+  const [totalCorrectAnswers, setTotalCorrectAnswers] = useState(0);
+  const [startQuiz, setStartQuiz] = useState(false);
+
   
   useEffect(() => {
     const fetchData = async () => {
@@ -45,25 +50,42 @@ function Quiz(){
     };
 
     fetchData();
-  }, []);
+  }, [startQuiz]);
 
-  const [startQuiz, setStartQuiz] = useState(false);
   function handleStartQuiz(){
     setStartQuiz(prevState => !prevState)
+
   }
 
-  console.log(questions)
+  function resetQuiz(){
+    setQuestions([]); // Clear previous questions
+    setQuestionsNum(0);
+    setTotalCorrectAnswers(0);
+    setStartQuiz(false);
+  }
+
+  console.log(questionsNum)
   return (
     <>
       <div className='intro-container'>
-      <h1 className='intro-title bobs-font2 bob-sign-style'>Bob's Burgers Quiz</h1>
-      
-      {startQuiz ? <Question questions={questions}/> : 
-      <>
-        <p className='intro-text just-another-hand-regular'>take this quiz to test how well you can name the characters we've all grown to love!</p>
-        <button className='intro-btn' onClick={handleStartQuiz}>BEGIN</button>
-      </>
-      }
+       
+        <h1 className='intro-title bobs-font2 bob-sign-style'>Bob's Burgers Quiz</h1>
+
+        {startQuiz && (questionsNum < 10) ? <>  <p className='position-absolute question-marker'>{questionsNum + 1}/10</p>
+                                                <Question questions={questions[questionsNum]} 
+                                                     questionsNum={questionsNum} 
+                                                     handleNextQuestion={() => {setQuestionsNum(prev => prev + 1)}} 
+                                                     setTotalCorrectAnswers={() => {setTotalCorrectAnswers(prev => (prev += 1))}}/>
+                                                     
+                                            </> : null}
+        
+        {!startQuiz ? <>
+          <p className='intro-text just-another-hand-regular'>take this quiz to test how well you can name the characters we've all grown to love!</p>
+          <button className='intro-btn' onClick={handleStartQuiz}>BEGIN</button>
+        </> : null}
+        
+        
+        { questionsNum > 9 ? <Result totalCorrectAnswers={totalCorrectAnswers} resetQuiz={resetQuiz}/> : null}
       </div>
     </>
   )

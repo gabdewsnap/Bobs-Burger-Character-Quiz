@@ -1,19 +1,13 @@
 import { useState, useEffect } from 'react';
-import Option from './Option'
-import Answer from './Answer';
 
 function Question(props) {
 
-
   const [activeSelection, setActiveSelection] = useState(0);
-  const [questionsNum, setQuestionsNum] = useState(0);
   const [showAnswer, setShowAnswer] = useState(true);
-  const [wasCorrect, setWasCorrect] = useState(false);
-  const [totalCorrectAnswers, setTotalCorrectAnswers] = useState(0);
   const [disabled, setDisabled] = useState(false);
-  const questions = props.questions[questionsNum];
+  const questions = props.questions;
 
-  console.log(questions.options)
+  // Creates the quiz button options
   const selections = questions.options.map(char => 
     <button
       key={char.id}
@@ -26,43 +20,43 @@ function Question(props) {
     </button>
   )
 
-  //Does a bunch of things when you submit your answer
+  //Does a bunch of things when you submit your answer 
   function toggleShowAnswer(){
-    setShowAnswer(showAnswer => !showAnswer)
+    setShowAnswer(false)
     setDisabled(true);
     const element = document.getElementById(questions.answer.id)
     element.classList.add("correct-answer")
-    document.getElementById("answer-paragraph").classList.remove("d-none");
     
     if(questions.answer.id == activeSelection){
-      setWasCorrect(true)
-      setTotalCorrectAnswers(prev => (prev += 1));
-      document.getElementById("answer-paragraph").classList.add("green-color", "d-block");
+      props.setTotalCorrectAnswers();
     }
-    
     else{
       document.getElementById(activeSelection).classList.add("incorrect-answer");
-      document.getElementById("answer-paragraph").classList.add("red-color", "d-block");
-    }
+    }   
+  }
 
+  //resets the quiz question
+  function handleNext(){
+    setDisabled(false)
+    setShowAnswer(true)
+    setActiveSelection(0)
+    props.handleNextQuestion()
   }
 
   return (
     <>
-    <div className='position-relative d-flex justify-content-center'>
-    <img className="char-img"src={questions.answer.image} alt={questions.answer.name} /> 
-    <p className='text-center answer-text position-absolute d-none' id="answer-paragraph">{wasCorrect ?  `Correct! ` : `&#x274c; Incorrect :( ` }</p>
+    <div className='d-flex justify-content-center'>
+      <img className="char-img"src={questions.answer.image} alt={questions.answer.name} /> 
     </div>
-
 
     <div className='row options-container' >
       {selections}
     </div>
     
-    {activeSelection && showAnswer? <button className='intro-btn' onClick={toggleShowAnswer}>SUBMIT</button> : null}
-
-    {!showAnswer ? <button className='intro-btn'>NEXT</button> : null}
-   
+    {activeSelection && showAnswer ? <button className='intro-btn' onClick={toggleShowAnswer}>SUBMIT</button> : null}
+    {!showAnswer && (props.questionsNum < 10) ? <button className='intro-btn' onClick={handleNext}>NEXT</button> : null}
+    
+    
   </>
   )
 }

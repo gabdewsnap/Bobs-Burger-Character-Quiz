@@ -1,34 +1,16 @@
-import { useState, useEffect } from 'react'
-import './index.css'
-import Question from './components/Question'
+import Quiz from "./Quiz";
+import { useState } from "react";
 
-function App() {
-  
-  /*  1. Create basic front-end (options component which will have an image and name)
-      2. Pick four random characters and create and array of the options components with their details. 
-        Character must be unique and one needs to be matching to correct answer
-  */
-
-    const [startQuiz, setStartQuiz] = useState(false);
-  
-    function handleStartQuiz(){
-      setStartQuiz(prevState => !prevState)
-    }
-  
-    return (
-      <>
-        <div className='intro-container'>
-        <h1 className='intro-title bobs-font2 bob-sign-style'>Bob's Burgers Quiz</h1>
-        
-        {startQuiz ? <Question/> : 
+export default function App(){
+    
+    const [resetQuiz, setResetQuiz] = useState(false);
+    console.log(resetQuiz)
+    
+    return (   
         <>
-          <p className='intro-text just-another-hand-regular'>take this quiz to test how well you can name the characters we've all grown to love!</p>
-          <button className='intro-btn' onClick={handleStartQuiz}>BEGIN</button>
+        <Quiz resetQuiz={setResetQuiz}/>
+        <footer>made with ❤️ by <a href="https://github.com/gabdewsnap">gabrielle</a></footer>
         </>
-        }
-        </div>
-      </>
     )
+    
 }
-
-export default App
