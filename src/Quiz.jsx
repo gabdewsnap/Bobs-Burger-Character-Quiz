@@ -7,50 +7,48 @@ import Result from './components/Result'
 
 function Quiz(props){
   const URL = "https://bobsburgers-api.herokuapp.com/characters/";
+  const proxyURL = "https://cors-anywhere.herokuapp.com/"; // Public CORS proxy
   const [questions, setQuestions] = useState([]);
   const [questionsNum, setQuestionsNum] = useState(0);
   const [totalCorrectAnswers, setTotalCorrectAnswers] = useState(0);
   const [startQuiz, setStartQuiz] = useState(false);
+  const [resetQuizQuestions, setResetQuizQuestions] = useState(false);
 
   
   useEffect(() => {
     const fetchData = async () => {
       let newQuestions = [];
 
-      //loop 10 times to have 10 questions
-      for (let i = 0; i < 10; i++) {
-
-        //create an array of 4 random id's to then use to grab characters from api 
+        //create an array of 40 random id's to then use to grab characters from api 
         let characterArray = [];
-        while (characterArray.length < 4) {
+        while (characterArray.length < 40) {
           let num = Math.floor(Math.random() * 496) + 1;
           if (!characterArray.includes(num)) {
             characterArray.push(num);
           }
         }
-
-        let charAnswer = characterArray[Math.floor(Math.random() * characterArray.length)];
-
+        
         try {
-          
-          const arrayResponse = await fetch(URL + `[${characterArray}]`);
-          const choicesData = await arrayResponse.json();
+          console.log(characterArray)
+          const arrayResponse = await fetch(proxyURL + URL + `[${characterArray}]`);
+          if (!arrayResponse.ok) throw new Error("API request failed");
+          const characters = await arrayResponse.json();
+         
+          for (let i = 0; i < 10; i++) {
+            let choices = characters.splice(0, 4); 
+            let charAnswer = choices[Math.floor(Math.random() * choices.length)]; 
+           
+            newQuestions.push({ answer: charAnswer, options: choices,});
+          }
 
-          const choices = choicesData.map((x) => ({ name: x.name, id: x.id }));
-          const answerResponse = await fetch(URL + `${charAnswer}`);
-          const correctAnswer = await answerResponse.json();
-
-          // ARRAY STRUCTURE
-          newQuestions.push({ answer: correctAnswer, options: choices, number: i});
         } catch (error) {
           console.error("Error fetching data:", error);
         }
-      }
       setQuestions(newQuestions);
     };
 
     fetchData();
-  }, [startQuiz]);
+  }, [resetQuizQuestions]);
 
   function handleStartQuiz(){
     setStartQuiz(prevState => !prevState)
@@ -62,9 +60,9 @@ function Quiz(props){
     setQuestionsNum(0);
     setTotalCorrectAnswers(0);
     setStartQuiz(false);
+    setResetQuizQuestions(prev => !prev)
   }
 
-  console.log(questionsNum)
   return (
     <>
       <div className='intro-container'>
