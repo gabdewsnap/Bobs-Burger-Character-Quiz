@@ -55,7 +55,7 @@ html body{
   border: .25rem solid #FD0D2A;
   background-color: #FFE001;
   color:black;
-  font-size: 2.25rem;
+  font-size: 4rem;
   text-align: center;
   padding: .5rem;
   width: fit-content;
@@ -65,11 +65,16 @@ html body{
 
 }
 
+.intro-text{
+  font-family: "Just Another Hand", serif;
+  font-size: 1.5rem;
+}
+
 .intro-btn{
   font-family: "Bob's Burgers", serif;
   letter-spacing: .1rem;
   font-weight: 500;
-  font-size: 1.25rem;
+  font-size: 2rem;
   padding: .25rem 2rem;
   background-color:hsla(60, 26%, 75%, 0.562);
   border: 2px solid black;
@@ -83,8 +88,8 @@ html body{
 
 /* OPTIONS */
 .char-img{
-  width: 150px;
-  height: 250px;
+  width: 250px;
+  height: 350px;
   object-fit: cover;
   object-position: top;
   padding: 1rem 0;
@@ -100,7 +105,7 @@ html body{
 }
 
 .option-card{
-  font-size: 1rem;
+  font-size: 1.5rem;
   border-radius: 5px;
   font-family: "Just Another Hand", serif;
 }
@@ -136,7 +141,7 @@ html body{
   right: 0;
   top: 0;
   font-family: "Just Another Hand", serif;
-  font-size: 1rem;
+  font-size: 1.25rem;
   margin-right: 5px
 }
 
@@ -146,7 +151,7 @@ footer{
   position: absolute;
   color: white;
   padding: .15rem .5rem;
-  font-size: .5rem;
+  font-size: 1rem;
   background-color: rgba(0, 0, 0, 0.288);
   border-radius: 5px;
 }
@@ -157,15 +162,28 @@ footer a{
 }
 
 @media only screen and (max-width: 768px) {
-  .bob-sign-style{
-    font-size: 1.95rem;
+  .intro-title{
+    font-size: 1.85rem;
   }
 
   .intro-container{
     max-width: 350px;
   }
 
-  .intro-btn, .option-card, .intro-container p{
-    font-size: 1.25rem;
+  .intro-btn, .option-card, .intro-text{
+    font-size: 1rem;
+  }
+
+  .char-img{
+    width: 150px;
+    height: 250px;
+  }
+
+  footer{
+    font-size: .5rem;
+  }
+
+  .question-marker{
+    font-size: 1rem;
   }
 }

@@ -75,7 +75,7 @@ function Quiz(props){
         </>}
         
         {!startQuiz && <>
-          <p className='just-another-hand-regular'>take this quiz to test how well you can name the characters we've all grown to love!</p>
+          <p className='intro-text'>take this quiz to test how well you can name the characters we've all grown to love!</p>
           <button className='intro-btn' onClick={handleStartQuiz}>BEGIN</button>
         </>}
         
