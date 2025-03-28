@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import './index.css'
-import Question from './components/Question'
-import Result from './components/Result'
+import '../index.css'
+import Question from './Question'
+import Result from './Result'
 
 
 
