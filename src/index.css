@@ -129,14 +129,6 @@ html body{
   background: #d37373;
 }
 
-.answer-text{
-  font-size: .75rem;
-  font-weight: 500;
-  bottom: -.75rem;
-  border-radius: 5px;
-  padding: 0rem 1rem;
-}
-
 .question-marker{
   right: 0;
   top: 0;
