@@ -51,7 +51,7 @@ html body{
 
 }
 
-.bob-sign-style{
+.intro-title{
   border: .25rem solid #FD0D2A;
   background-color: #FFE001;
   color:black;
@@ -61,6 +61,7 @@ html body{
   width: fit-content;
   box-shadow: -2px 2px 2px black;
   border-radius: 8px;
+  font-family: "Bob's Burgers", sans-serif;
 
 }
 

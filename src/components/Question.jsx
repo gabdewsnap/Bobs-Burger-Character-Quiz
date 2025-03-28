@@ -45,19 +45,18 @@ function Question(props) {
 
   return (
     <>
-    <div className='d-flex justify-content-center'>
-      <img className="char-img"src={questions.answer.image} alt={questions.answer.name} /> 
-    </div>
+      <div className='d-flex justify-content-center'>
+        <img className="char-img"src={questions.answer.image} alt={questions.answer.name} /> 
+      </div>
 
-    <div className='row options-container' >
-      {selections}
-    </div>
-    
-    {activeSelection && showAnswer ? <button className='intro-btn' onClick={toggleShowAnswer}>SUBMIT</button> : null}
-    {!showAnswer && (props.questionsNum < 10) ? <button className='intro-btn' onClick={handleNext}>NEXT</button> : null}
-    
-    
-  </>
+      <div className='row options-container' >
+        {selections}
+      </div>
+      
+      {activeSelection && showAnswer ? <button className='intro-btn' onClick={toggleShowAnswer}>SUBMIT</button> : null}
+      {!showAnswer && (props.questionsNum < 10) ? <button className='intro-btn' onClick={handleNext}>NEXT</button> : null}
+      
+    </>
   )
 }
 
